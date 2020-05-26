@@ -1,0 +1,106 @@
+<html>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<head>
+    <title>JavaScript Rock Paper Scissors</title>
+    <style>
+        body {
+            background-color: #FFFAFF;
+            text-align: center;
+            font-family: 'Bebas Neue', cursive;
+        }
+
+        .row {
+            display: flex;
+        }
+
+        .column {
+            flex: 33.3%;
+            padding: 1px;
+        }
+
+        button {
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Rock, Paper or Scissors?</h1>
+    <div class="row">
+        <div class="column">
+            <img alt="Rock" style="width:60%" onclick="playGame('rock')" src="./rock.png"> </div>
+        <div class="column">
+            <img alt="Paper" style="width:60%" onclick="playGame('paper')" src="./paper.png">
+        </div>
+        <div class="column">
+            <img alt="Scissors" style="width:60%" onclick="playGame('scissors')" src="./scissors.png">
+        </div>
+    </div>
+
+    <hr>
+    <div id="output">
+        <h3 id="uc"></h3>
+        <h3 id="cc"></h3>
+        <h2 id="winner"></h2>
+    </div>
+
+    <script type="text/JavaScript">
+        function changeColour(colour) {
+            document.getElementById("output").style.backgroundColor = colour;
+        }
+
+        function getComputerChoice() {
+            const choice = Math.floor(Math.random() * 3);
+            if(choice == 0) {
+            return("rock");
+            }
+            if(choice == 1) {
+            return("paper");
+            } else {
+            return("scissors");
+            }
+        }
+        
+        function determineWinner(userChoice, computerChoice) {
+            if(userChoice == computerChoice) {
+            return("The game is a tie!");
+            }
+            if(userChoice == "rock") {
+            if(computerChoice == "paper") {
+                return("Computer wins!");
+            } else {
+                return("You win!");
+            }
+            }
+            if(userChoice == "paper") {
+            if(computerChoice == "scissors") {
+                return("Computer wins!");
+            } else {
+                return("You win!");
+            }
+            }
+            if(userChoice == "scissors") {
+            if(computerChoice == "rock") {
+                return("Computer wins!");
+            } else {
+                return("You win!");
+            }
+            }
+        }
+        
+        function playGame(choice) {
+            const userChoice = choice;
+            const computerChoice = getComputerChoice();
+            console.log("Your choice: "+ userChoice);
+            document.getElementById("uc").innerHTML = "Your choice: "+ userChoice;
+            console.log("Computer's choice: "+ computerChoice);
+            document.getElementById("cc").innerHTML = "Computer's choice: "+ computerChoice;
+            console.log(determineWinner(userChoice, computerChoice));
+            document.getElementById("winner").innerHTML = determineWinner(userChoice, computerChoice);
+        }
+        </script>
+</body>
+
+
+</html>
